@@ -1,0 +1,131 @@
+cmake_minimum_required(VERSION 3.15)
+project(CMU_15_445_2018)
+
+set(CMAKE_CXX_STANDARD 14)
+
+include_directories(cmuDB/src/include)
+include_directories(cmuDB/src/include/buffer)
+include_directories(cmuDB/src/include/catalog)
+include_directories(cmuDB/src/include/common)
+include_directories(cmuDB/src/include/concurrency)
+include_directories(cmuDB/src/include/disk)
+include_directories(cmuDB/src/include/hash)
+include_directories(cmuDB/src/include/index)
+include_directories(cmuDB/src/include/logging)
+include_directories(cmuDB/src/include/page)
+include_directories(cmuDB/src/include/sqlite)
+include_directories(cmuDB/src/include/table)
+include_directories(cmuDB/src/include/type)
+include_directories(cmuDB/src/include/vtable)
+include_directories(cmuDB/test/include)
+include_directories(cmuDB/test/include/logging)
+include_directories(cmuDB/test/include/vtable)
+include_directories(cmuDB/third_party/gmock/gmock)
+include_directories(cmuDB/third_party/gmock/gtest)
+
+add_executable(CMU_15_445_2018
+        cmuDB/src/buffer/buffer_pool_manager.cpp
+        cmuDB/src/buffer/lru_replacer.cpp
+        cmuDB/src/catalog/column.cpp
+        cmuDB/src/catalog/schema.cpp
+        cmuDB/src/common/config.cpp
+        cmuDB/src/concurrency/lock_manager.cpp
+        cmuDB/src/concurrency/transaction_manager.cpp
+        cmuDB/src/disk/disk_manager.cpp
+        cmuDB/src/hash/extendible_hash.cpp
+        cmuDB/src/include/buffer/buffer_pool_manager.h
+        cmuDB/src/include/buffer/lru_replacer.h
+        cmuDB/src/include/buffer/replacer.h
+        cmuDB/src/include/catalog/column.h
+        cmuDB/src/include/catalog/schema.h
+        cmuDB/src/include/common/config.h
+        cmuDB/src/include/common/exception.h
+        cmuDB/src/include/common/logger.h
+        cmuDB/src/include/common/rid.h
+        cmuDB/src/include/common/rwmutex.h
+        cmuDB/src/include/common/string_utility.h
+        cmuDB/src/include/concurrency/lock_manager.h
+        cmuDB/src/include/concurrency/transaction.h
+        cmuDB/src/include/concurrency/transaction_manager.h
+        cmuDB/src/include/disk/disk_manager.h
+        cmuDB/src/include/hash/extendible_hash.h
+        cmuDB/src/include/hash/hash_table.h
+        cmuDB/src/include/index/b_plus_tree.h
+        cmuDB/src/include/index/b_plus_tree_index.h
+        cmuDB/src/include/index/generic_key.h
+        cmuDB/src/include/index/index.h
+        cmuDB/src/include/index/index_iterator.h
+        cmuDB/src/include/logging/log_manager.h
+        cmuDB/src/include/logging/log_record.h
+        cmuDB/src/include/logging/log_recovery.h
+        cmuDB/src/include/page/b_plus_tree_internal_page.h
+        cmuDB/src/include/page/b_plus_tree_leaf_page.h
+        cmuDB/src/include/page/b_plus_tree_page.h
+        cmuDB/src/include/page/header_page.h
+        cmuDB/src/include/page/page.h
+        cmuDB/src/include/page/table_page.h
+        cmuDB/src/include/sqlite/sqlite3.h
+        cmuDB/src/include/sqlite/sqlite3ext.h
+        cmuDB/src/include/table/table_heap.h
+        cmuDB/src/include/table/table_iterator.h
+        cmuDB/src/include/table/tuple.h
+        cmuDB/src/include/type/bigint_type.h
+        cmuDB/src/include/type/boolean_type.h
+        cmuDB/src/include/type/decimal_type.h
+        cmuDB/src/include/type/integer_parent_type.h
+        cmuDB/src/include/type/integer_type.h
+        cmuDB/src/include/type/limits.h
+        cmuDB/src/include/type/numeric_type.h
+        cmuDB/src/include/type/smallint_type.h
+        cmuDB/src/include/type/tinyint_type.h
+        cmuDB/src/include/type/type.h
+        cmuDB/src/include/type/type_id.h
+        cmuDB/src/include/type/type_util.h
+        cmuDB/src/include/type/value.h
+        cmuDB/src/include/type/varlen_type.h
+        cmuDB/src/include/vtable/virtual_table.h
+        cmuDB/src/index/b_plus_tree.cpp
+        cmuDB/src/index/b_plus_tree_index.cpp
+        cmuDB/src/index/index_iterator.cpp
+        cmuDB/src/logging/log_manager.cpp
+        cmuDB/src/logging/log_recovery.cpp
+        cmuDB/src/page/b_plus_tree_internal_page.cpp
+        cmuDB/src/page/b_plus_tree_leaf_page.cpp
+        cmuDB/src/page/b_plus_tree_page.cpp
+        cmuDB/src/page/header_page.cpp
+        cmuDB/src/page/table_page.cpp
+        cmuDB/src/sqlite/shell.c
+        cmuDB/src/sqlite/sqlite3.c
+        cmuDB/src/table/table_heap.cpp
+        cmuDB/src/table/table_iterator.cpp
+        cmuDB/src/table/tuple.cpp
+        cmuDB/src/type/bigint_type.cpp
+        cmuDB/src/type/boolean_type.cpp
+        cmuDB/src/type/decimal_type.cpp
+        cmuDB/src/type/integer_parent_type.cpp
+        cmuDB/src/type/integer_type.cpp
+        cmuDB/src/type/smallint_type.cpp
+        cmuDB/src/type/tinyint_type.cpp
+        cmuDB/src/type/type.cpp
+        cmuDB/src/type/value.cpp
+        cmuDB/src/type/varlen_type.cpp
+        cmuDB/src/vtable/virtual_table.cpp
+        cmuDB/test/buffer/buffer_pool_manager_test.cpp
+        cmuDB/test/buffer/lru_replacer_test.cpp
+        cmuDB/test/common/rwmutex_test.cpp
+        cmuDB/test/concurrency/lock_manager_test.cpp
+        cmuDB/test/hash/extendible_hash_test.cpp
+        cmuDB/test/include/logging/common.h
+        cmuDB/test/include/vtable/testing_vtable_util.h
+        cmuDB/test/index/b_plus_tree_concurrent_test.cpp
+        cmuDB/test/index/b_plus_tree_print_test.cpp
+        cmuDB/test/index/b_plus_tree_test.cpp
+        cmuDB/test/logging/log_manager_test.cpp
+        cmuDB/test/table/header_page_test.cpp
+        cmuDB/test/table/tuple_test.cpp
+        cmuDB/test/type/type_test.cpp
+        cmuDB/test/vtable/virtual_table_test.cpp
+        cmuDB/third_party/gmock/gmock/gmock.h
+        cmuDB/third_party/gmock/gtest/gtest.h
+        cmuDB/third_party/gmock/gmock-gtest-all.cc
+        cmuDB/third_party/gmock/gmock_main.cc)
